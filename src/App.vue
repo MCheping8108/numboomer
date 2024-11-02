@@ -1,42 +1,26 @@
 <template>
-  <div class="mb-4">
-    <el-button>Default</el-button>
-    <el-button type="primary">数字炸弹</el-button>
-    <el-button type="success">数字炸弹</el-button>
-    <el-button type="info">数字炸弹</el-button>
-    <el-button type="warning">数字炸弹</el-button>
-    <el-button type="danger">数字炸弹</el-button>
-  </div>
-
-  <div class="mb-4">
-    <el-button plain>Plain</el-button>
-    <el-button type="primary" plain>数字炸弹</el-button>
-    <el-button type="success" plain>数字炸弹</el-button>
-    <el-button type="info" plain>数字炸弹</el-button>
-    <el-button type="warning" plain>数字炸弹</el-button>
-    <el-button type="danger" plain>数字炸弹</el-button>
-  </div>
-
-  <div class="mb-4">
-    <el-button round>Round</el-button>
-    <el-button type="primary" round>数字炸弹</el-button>
-    <el-button type="success" round>数字炸弹</el-button>
-    <el-button type="info" round>数字炸弹</el-button>
-    <el-button type="warning" round>数字炸弹</el-button>
-    <el-button type="danger" round>数字炸弹</el-button>
-  </div>
-
-  <div>
-    <el-button :icon="Search" circle />
-    <el-button type="primary" :icon="Edit" circle />
-    <el-button type="success" :icon="Check" circle />
-    <el-button type="info" :icon="Message" circle />
-    <el-button type="warning" :icon="Star" circle />
-    <el-button type="danger" :icon="Delete" circle />
-  </div>
+  <el-tabs v-model="activeName" class="demo-tabs">
+    <el-tab-pane label="User" name="first">
+      <el-input v-model="input" style="width: 240px" placeholder="数字炸弹，你准备好了吗" />
+      <el-button type="primary" @click="handleClick">炸弹</el-button><br>
+      在tab中的config配置
+    </el-tab-pane>
+    <el-tab-pane label="Config" name="second">
+      <p>目标数字</p><el-input v-model="target" style="width: 240px" placeholder="数字炸弹，你准备好了吗" />
+    </el-tab-pane>
+    <el-tab-pane label="update log" name="third">
+      <h1>更新日志</h1><br>
+      <h2>2024-11-2</h2>
+      <p>基础布局，写出基本逻辑</p>
+      <h2>2024-10-29</h2>
+      <p>新建文件夹</p>
+    </el-tab-pane>
+    <el-tab-pane label="Task" name="fourth">Task</el-tab-pane>
+  </el-tabs>
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue'
 import {
   Check,
   Delete,
@@ -44,5 +28,17 @@ import {
   Message,
   Search,
   Star,
+  TabsPaneContext 
 } from '@element-plus/icons-vue'
+
+const input = ref('')
+const target = ref('')
+
+const handleClick = () => {
+  if (input.value === target.value) {
+    // console.log('炸弹成功')
+    alert('炸弹成功')
+  }
+}
+  
 </script>
